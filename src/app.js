@@ -6,10 +6,11 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
+//引入路由=>注册路由
 const index = require('./routes/index')
 const users = require('./routes/users')
 
-// error handler
+// error handler,引入koa2插件
 onerror(app)
 
 // middlewares
@@ -24,7 +25,7 @@ app.use(views(__dirname + '/views', {
   extension: 'ejs'
 }))
 
-// logger
+// logger手写logger
 app.use(async (ctx, next) => {
   const start = new Date()
   await next()
@@ -32,7 +33,7 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
-// routes
+// 注册路由routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 
