@@ -2,7 +2,23 @@ const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
-    title: 'Hello Koa 2!'
+    title: 'Hello Koa 2021!',
+    msg:"你好",
+    isMe: true,
+    blogList: [
+      {
+        id:1,
+        title:'es6 扩展运算符语法'
+      },
+      {
+        id:2,
+        title:'element UI,全部载入，按需加载，引入插件'
+      },
+      {
+        id:3,
+        title:'解决vue-cli 3.x打包后空白页面'
+      }
+    ]
   })
 })
 
